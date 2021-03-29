@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Game from './chess'
+import Context from './context/index'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </a>
       </header>
       <Game/>
+      <Context/>
     </div>
   );
 }
