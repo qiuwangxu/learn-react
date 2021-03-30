@@ -19,7 +19,6 @@ class ErrorBoundary extends React.Component {
     this.logErrorToMyService(error, errorInfo)
   }
   render() {
-    console.log(this.state)
     if (this.state.hasError) {
       return <h1> something went wrong </h1>
     }
