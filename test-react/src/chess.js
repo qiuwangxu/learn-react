@@ -49,7 +49,7 @@ function Square (props) {
     }
     render() {
       return (
-        <div>
+        <React.Fragment>
           <div className="board-row">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
@@ -65,7 +65,7 @@ function Square (props) {
             {this.renderSquare(7)}
             {this.renderSquare(8)}
           </div>
-        </div>
+        </React.Fragment>
       );
     }
   }

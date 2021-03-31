@@ -2,7 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import Game from './chess'
 import Context from './context/index'
-
+import ShowRef from './ref/refs'
+import React from 'react'
+const ref = React.createRef()
+const handleClick = function () {
+  console.log('ref handleclick')
+  ref.current.focus()
+}
 function App() {
   return (
     <div className="App">
@@ -22,6 +28,8 @@ function App() {
       </header>
       <Game/>
       <Context/>
+      <ShowRef ref={ref} onClick={handleClick}  label="click me">
+      </ShowRef>
     </div>
   );
 }

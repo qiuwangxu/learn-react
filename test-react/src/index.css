@@ -62,3 +62,8 @@ ol, ul {
 .game-info {
   margin-left: 20px;
 }
+
+
+.FancyButton:focus{
+  background: red;
+}
