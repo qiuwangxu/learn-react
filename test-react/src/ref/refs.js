@@ -1,10 +1,4 @@
 import React from 'react'
-
-// const FancyButton = React.forwardRef((props, ref) => {
-//   return <button ref={ref} className="FancyButton" onClick={props.onClick}>
-//     {props.children}
-//   </button>
-// })
 class FancyButton extends React.Component {
   focus () {
     document.getElementsByClassName('FancyButton')[0].focus()
@@ -30,11 +24,10 @@ function ShowRefs (Component) {
       const { refs, ...rest} = this.props
       console.log('React.forwardRef render', refs, rest)
       return (
-        <Component ref={refs} {...rest} />
-        // <FancyButton ref={ref} 
-        // onClick={()=>{this.toRef()}}>
-        //   click me!
-        // </FancyButton>
+        <div>
+          <Component ref={refs} {...rest} />
+          <ListOfTenThings />
+        </div>
       )
     }
   }
@@ -42,6 +35,21 @@ function ShowRefs (Component) {
     console.log('React.forwardRef', props, ref)
     return <ShowRef {...props } refs={ref}/>
   })
+}
+function Repeat(props) {
+  let items = [];
+  for (let i = 0; i < props.numTimes; i++) {
+    items.push(props.children(i));
+  }
+  return <div>{items}</div>;
+}
+
+function ListOfTenThings() {
+  return (
+    <Repeat numTimes={10}>
+      {(index) => <div key={index}>This is item {index} in the list</div>}
+    </Repeat>
+  );
 }
 
 export default ShowRefs(FancyButton)
