@@ -11,7 +11,7 @@ import React from 'react'
 5.每当有人获胜时，高亮显示连成一线的 3 颗棋子。
 6.当无人获胜时，显示一个平局的消息。
  */
-function Square (props) {
+function Square (props:any) {
     return (
       <button 
         className="square"
@@ -21,7 +21,7 @@ function Square (props) {
       </button>
     )
   }
-  function calculateWinner (squares) {
+  function calculateWinner (squares:any) {
     const lines = [
       [0,1,2],
       [3,4,5],
@@ -40,8 +40,8 @@ function Square (props) {
     }
     return null;
   }
-  class Board extends React.Component {
-    renderSquare(i) {
+  class Board extends React.Component<any,any> {
+    renderSquare(i:number) {
       return <Square 
             value={this.props.squares[i]}
                onClick= {()=>{this.props.onClick(i)}}
@@ -70,20 +70,17 @@ function Square (props) {
     }
   }
   
-  class Game extends React.Component {
-    constructor (props) {
-      super(props)
-      this.state= {
-        history: [
-          {
-            squares: Array(9).fill(null)
-          }
-        ],
-        stepNumber: 0,
-        xIsNext: true
-      }
+  class Game extends React.Component<any,any> {
+    state= {
+      history: [
+        {
+          squares: Array(9).fill(null)
+        }
+      ],
+      stepNumber: 0,
+      xIsNext: true
     }
-    handleClick (i) {
+    handleClick (i:number) {
       const history = this.state.history.slice(0, this.state.stepNumber + 1)
       const current = history[history.length - 1]
       const squares = current.squares.slice()
@@ -97,7 +94,7 @@ function Square (props) {
         xIsNext: !this.state.xIsNext
       })
     }
-    jumpTo (step) {
+    jumpTo (step:number) {
       
       this.setState({
         stepNumber: step,
@@ -123,7 +120,7 @@ function Square (props) {
           <div className="game-board">
             <Board 
               squares={current.squares}
-              onClick = {(i)=>{this.handleClick(i)}}
+              onClick = {(i:number)=>{this.handleClick(i)}}
              />
           </div>
           <div className="game-info">

@@ -1,7 +1,10 @@
 import React from 'react'
-class FancyButton extends React.Component {
+type Props = {
+  [prop:string]: any
+}
+class FancyButton extends React.Component<Props,any> {
   focus () {
-    document.getElementsByClassName('FancyButton')[0].focus()
+    (document.getElementsByClassName('FancyButton')[0] as HTMLElement).focus()
     console.log('触发了focus')
   }
   render() {
@@ -14,9 +17,9 @@ class FancyButton extends React.Component {
   }
 }
 
-function ShowRefs (Component) {
-  class ShowRef extends React.Component {
-    componentDidUpdate(prevProps) {
+function ShowRefs (Component: any) {
+  class ShowRef extends React.Component<any,any> {
+    componentDidUpdate(prevProps: any) {
       console.log('old props:', prevProps);
       console.log('new props:', this.props);
     }
@@ -31,12 +34,12 @@ function ShowRefs (Component) {
       )
     }
   }
-  return React.forwardRef((props, ref)=>{
+  return React.forwardRef<any,any>((props, ref)=>{
     console.log('React.forwardRef', props, ref)
     return <ShowRef {...props } refs={ref}/>
   })
 }
-function Repeat(props) {
+function Repeat(props: Props) {
   let items = [];
   for (let i = 0; i < props.numTimes; i++) {
     items.push(props.children(i));
@@ -47,7 +50,7 @@ function Repeat(props) {
 function ListOfTenThings() {
   return (
     <Repeat numTimes={10}>
-      {(index) => <div key={index}>This is item {index} in the list</div>}
+      {(index:number) => <div key={index}>This is item {index} in the list</div>}
     </Repeat>
   );
 }

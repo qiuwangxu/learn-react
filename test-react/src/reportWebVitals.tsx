@@ -1,4 +1,6 @@
-const reportWebVitals = onPerfEntry => {
+import { ReportHandler } from '_web-vitals@1.1.1@web-vitals/dist/modules/types';
+
+const reportWebVitals = (onPerfEntry: ReportHandler) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       getCLS(onPerfEntry);

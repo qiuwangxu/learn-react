@@ -5,8 +5,12 @@ import {
 } from './theme-context'
 import ErrorBoundary from '../error-boundary'
 ThemContext.displayName = 'myThemContext'
-class Context extends React.Component {
-  constructor(props) {
+interface AppContextInterface {
+  theme: any;
+  toggleTheme: ()=> void
+}
+class Context extends React.Component<any,AppContextInterface> {
+  constructor(props:any) {
     super(props)
     this.toggleTheme = this.toggleTheme.bind(this)
     this.state = {
@@ -15,7 +19,7 @@ class Context extends React.Component {
     }
   }
   toggleTheme() {
-    this.setState(state => ({
+    this.setState((state) => ({
       theme: state.theme === theme.dark ?
         theme.light : theme.dark
     }))
@@ -23,14 +27,14 @@ class Context extends React.Component {
   render() {
     return ( 
     <ErrorBoundary>
-      <ThemContext.Provider value = {this.state} >
+      <ThemContext.Provider value= {this.state} >
         <Toolbar / >
       </ThemContext.Provider> 
       <Toolbar / >
       <ThemContext.Consumer >
         {value => ( 
             <div >
-              {value.theme.foreground + '88'}
+              {value?.theme.foreground + '88'}
             </div>
         )} 
       </ThemContext.Consumer> 

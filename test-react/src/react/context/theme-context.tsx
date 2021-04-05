@@ -10,8 +10,11 @@ export const theme = {
     background: '#222222'
   }
 }
-
-export const ThemContext = React.createContext({
+interface AppContextInterface {
+  theme: any;
+  toggleTheme: ()=> void
+}
+export const ThemContext = React.createContext<AppContextInterface|null>({
   theme: theme.dark,
   toggleTheme: () => {
     console.log(22222)
